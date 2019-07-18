@@ -1,0 +1,64 @@
+
+///////////////////////////////////////////
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+
+
+
+
+////////////////////////////////////
+ 
+public class Login { 
+       private static Connection connect = null;
+  private static PreparedStatement preparedStatement = null;
+  public static boolean login(String username, String password)throws ServletException, IOException, SQLException  {
+
+	  boolean found = false;
+    try {
+      System.out.println("Select a table and then print out its content.");
+      // This will load the MySQL driver, each DB has its own driver
+      Class.forName("com.mysql.jdbc.Driver");
+      // Setup the connection with the DB
+      connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectdb?"
+              + "user=john&password=pass1234");
+      String query1 = "select Username from User where Username = '"+ username + "' AND Password = '"+ password + "'";
+      
+      preparedStatement = connect
+              .prepareStatement(query1);
+
+
+      ResultSet result = preparedStatement.executeQuery(query1);
+      int count = 0;
+      while(result.next()) {
+    	  System.out.println(result.getString("Username"));
+    	  count++;
+      }
+      if(count == 1) {
+    	  System.out.println("Login successful"); 
+    	  found = true;
+      }
+      else{
+    	  System.out.println("Wrong input");
+    	  found = false;   	  
+      }
+      System.out.println(count);
+      
+  
+    } catch (Exception c) {
+         System.out.println(c);
+    } finally {
+      System.exit(0);
+    }
+	return found;
+  }
+}
+  
+
+
+

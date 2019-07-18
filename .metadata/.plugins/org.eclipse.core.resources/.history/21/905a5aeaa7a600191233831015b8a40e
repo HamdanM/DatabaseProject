@@ -1,0 +1,120 @@
+
+
+public class User {
+
+    protected int userid;
+    protected String Username;
+    protected String Password;
+    protected String FirstName;
+    protected String LastName;
+    protected String Email;
+    protected String Gender;
+    protected int age;
+    protected int level;
+ 
+    public User() {
+    }
+ 
+    public User(int userid) {
+        this.userid = userid;
+    }
+ 
+    public User(int userid, String Username, String Password, String FirstName, String LastName,
+    		String Email, String Gender, int age, int level) {
+        this.userid = userid;    
+        this.Username = Username;
+        this.Password = Password;
+        this.FirstName = FirstName;
+        this.LastName = LastName ;
+        this.Email = Email;
+        this.Gender = Gender;
+        this.age = age;
+        this.level = level;
+    }
+    public User(int userid, String Username, String FirstName, String LastName,
+    		String Email, String Gender, int age, int level) {
+    	this(int userid, String Username, String FirstName, String LastName,
+        		String Email, String Gender, int age, int level);
+        this.userid = userid;    
+        this.Username = Username;
+        this.FirstName = FirstName;
+        this.LastName = LastName ;
+        this.Email = Email;
+        this.Gender = Gender;
+        this.age = age;
+        this.level = level;
+    }
+ 
+    public int getuserid() {
+        return userid;
+    }
+ 
+    public void setuserid(int userid) {
+        this.userid = userid;
+    }
+ 
+    public String getUsername() {
+        return Username;
+    }
+ 
+    public void setUsername(String Username) {
+        this.Username = Username;
+    }
+ 
+    public String getPassword() {
+        return Password;
+    }
+ 
+    public void setPassword (String Password) {
+        this.Password = Password;
+    }
+ 
+    public String getFirstname() {
+        return Password;
+    }
+ 
+    public void setFirstname (String FirstName) {
+        this.FirstName = FirstName;
+    }
+    
+    public String getLastname() {
+        return LastName;
+    }
+ 
+    public void setLastname (String LastName) {
+        this.LastName = LastName;
+    }
+    
+    public String getEmail() {
+        return Email;
+    }
+ 
+    public void seEmail(String Email) {
+        this.Email = Email;
+    }
+    
+    public String getGender() {
+        return Gender;
+    }
+ 
+    public void seGender(String Gender) {
+        this.Gender = Gender;
+    }
+    
+    public int getAge() {
+        return age;
+    }
+ 
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public int getLevel() {
+        return level;
+    }
+ 
+    public void setlevel(int level) {
+        this.level = level;
+    }
+    
+   
+}

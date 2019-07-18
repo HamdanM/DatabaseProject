@@ -1,0 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a href="addITem">Add Item</a>
+<a href="addReview">Add Review</a>
+<a href="favlist">Favorite List</a>
+<a href="itemList">item List</a>
+<a href="itemReview">Item Review</a>
+<a href="search">Search</a>
+
+  <div align="center">
+        <table border="1" cellpadding="5">
+            <caption><h2>List of Sellers</h2></caption>
+            <tr>
+                <th>username</th>
+                <th>firstname</th>
+                <th>lastname</th>
+         		<th>email</th>
+                <th>gender</th>
+                <th>age</th>
+          		<th>level</th>
+            
+          
+            </tr>
+            <c:forEach var="user" items="${listUser}">
+                <tr>
+                    <td><c:out value="${user.Username}" /></td>
+                    <td><c:out value="${user.FirstName}" /></td>
+                    <td><c:out value="${user.lastName}" /></td>
+                    <td><c:out value="${user.email}" /></td>
+                    <td><c:out value="${user.gender}" /></td>
+                    <td><c:out value="${user.age}" /></td>
+                    <td><c:out value="${user.level}" /></td>
+                    
+                   
+			              
+                                         
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>  
+
+</body>
+</html>
