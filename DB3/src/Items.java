@@ -1,9 +1,13 @@
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +23,9 @@ public class Items extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static Connection connect = null;
 	  private static PreparedStatement preparedStatement = null;
+	  private static Statement statement = null;
 	  
+	  private int count =0;
 	  
 	  protected void connect_func() throws SQLException {
 	        if (connect == null || connect.isClosed()) {
@@ -41,48 +47,70 @@ public class Items extends HttpServlet {
 	        }
 	    }
 	  
-	  public void insertItem(String username, String title, String description) throws SQLException {
-	   
+	  public void insertItem( String username, String title, String description, String posterid, int price) throws SQLException {
+
+		  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			LocalDateTime now = LocalDateTime.now();
+			System.out.print(count);
+		  if (count< 5) {
 		  connect_func();
 	   
+			
 	    	/////////////////////////////////////////////////////////////////////////Insert tubles to User table
 	    	preparedStatement = connect
-	    			.prepareStatement("insert into  Items(ItemID, Title, Description) values (?, ?, ?)");
+	    			.prepareStatement("insert into  Items( refUser, title, description , posterid, postTime , price ) values ( ?, ?, ?, ?, ?, ?)");
 	    	preparedStatement.setString(1, username);
 	    	preparedStatement.setString(2, title);
 	    	preparedStatement.setString(3, description);
+	    	preparedStatement.setString(4, posterid);
+	    	preparedStatement.setString(5, dtf.format(now));
+	    	preparedStatement.setInt(6, price);
 	    	preparedStatement.executeUpdate();
 
-	      
+			  count++;
+
+	    	
+		  }else {
+			  System.out.println("cant add more than 5 items a day");
+		  }
+		  
 	  
 	    ///////////////////////////////////////////////////////////////////////////////////////////////////
 	  }
-	  public Item searchItem(String title) throws ClassNotFoundException, SQLException {
-		        Item item = null;
+	  
+	  
+	  public List<Item> searchItem(String category) throws ClassNotFoundException, SQLException {
+	        List<Item> itemsList = new ArrayList<Item>();
 	  
 		        connect_func();
 			    	
 			    	/////////////////////////////////////////////////////////////////////////Insert tubles to User table
-			    	preparedStatement = connect
-			    			.prepareStatement("select User_userID, Title, Description, Date, Tags from Items where Title="+title+"");
-			    	preparedStatement.setString(1, title);
-			    	
-			    	ResultSet resultSet = preparedStatement.executeQuery();
-			    	
-			    	  if (resultSet.next()) {
-			              int itemid1 = resultSet.getInt("ItemID");
-			              String Username = resultSet.getString("User_UserID");
-			              String Title = resultSet.getString("Title");
-			              String Description = resultSet.getString("Description");
-			              String date= resultSet.getString("Date");
-			              String tags =resultSet.getString("Tags");
-			               
-			              item = new Item(itemid1, Username, Title, Description, date, tags);
-			          }
+			    
+			    String sql = "SELECT * FROM Items WHERE posterid = ?";
+			         				         
+				preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+		        preparedStatement.setString(1, category);
+			         
+		        ResultSet resultSet = preparedStatement.executeQuery();
+				       	
+			    	  while (resultSet.next()) {
+			    		  int itemid1 = resultSet.getInt("itemid"); 
+			              String Title = resultSet.getString("title");
+			              String Description = resultSet.getString("description");
+			              String tags = resultSet.getString("posterid");
+			              String date= resultSet.getString("postTime");
+			              int price =resultSet.getInt("price");
+			              String user = resultSet.getString("refUser");
+			              Item item =  new Item(itemid1, Title, Description, date, tags,price,user);
 
-			      
+			              itemsList.add(item);  
+
+			    	  }
+
+				    	System.out.println(itemsList);
+
 			  
-				return item;
+				return itemsList;
 			  }
 		    ///////////////////////////////////////////////////////////////////////////////////////////////////
 		  
@@ -93,19 +121,19 @@ public class Items extends HttpServlet {
 	        connect_func();
 		    	/////////////////////////////////////////////////////////////////////////Insert tubles to User table
 		    	preparedStatement = connect
-		    			.prepareStatement("select * from Items");
+		    			.prepareStatement("select * from Items order by price desc");
 		    
 		    	ResultSet resultSet = preparedStatement.executeQuery();
 		    	
 		    	  while (resultSet.next()) {
-		    		  int itemid1 = resultSet.getInt("Item");
-		              String Username = "madeup";
-		              String Title = resultSet.getString("Title");
-		              String Description = resultSet.getString("Description");
-		              String date= resultSet.getString("Date");
-		              String tags =resultSet.getString("Tags");
-		              
-		              Item item =  new Item(itemid1, Username, Title, Description, date, tags);
+		    		  int itemid1 = resultSet.getInt("itemid"); 
+		              String Title = resultSet.getString("title");
+		              String Description = resultSet.getString("description");
+		              String tags = resultSet.getString("posterid");
+		              String date= resultSet.getString("postTime");
+		              int price =resultSet.getInt("price");
+		              String user = resultSet.getString("refUser");
+		              Item item =  new Item(itemid1, Title, Description, date, tags,price,user);
 		              itemsList.add(item); 
 		          }
 
@@ -114,8 +142,41 @@ public class Items extends HttpServlet {
 			return itemsList;
 		  }
 
+	  
+	  public List<Item> listItembyUser(String User) throws SQLException {
+	        List<Item> itemsListbyUser = new ArrayList<Item>();
+		    	
+	        
+		    	   String sql = "select * from Items where refUser = ? ";
+					  connect_func();
+
+			     
+			        preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+			        preparedStatement.setString(1, User );
+		    	
+		    	ResultSet resultSet = preparedStatement.executeQuery();
+		    	
+		    	
+		    	  while (resultSet.next()) {
+		    		  int itemid1 = resultSet.getInt("itemid"); 
+		              String Title = resultSet.getString("title");
+		              String Description = resultSet.getString("description");
+		              String tags = resultSet.getString("posterid");
+		              String date= resultSet.getString("postTime");
+		              int price =resultSet.getInt("price");
+		              String user = resultSet.getString("refUser");
+		              Item item =  new Item(itemid1, Title, Description, date, tags,price,user);
+		              itemsListbyUser.add(item); 
+		          }
+
+		    System.out.println(itemsListbyUser);
+		    ///////////////////////////////////////////////////////////////////////////////////////////////////
+			return itemsListbyUser;
+		  }
+
+	  
 	  public boolean deleteItem(int itemid) throws ClassNotFoundException, SQLException {
-		  String sql = "DELETE FROM Items WHERE Itemid = ?";        
+		  String sql = "DELETE FROM Items WHERE itemid = ?";        
 
 		  connect_func();
 	    
@@ -127,13 +188,42 @@ public class Items extends HttpServlet {
 //	        disconnect();
 	        return rowDeleted;  
 	  }
+	  
+	  public Item getItem(int id) throws SQLException {
+	    	Item item = null;
+	        String sql = "SELECT * FROM Items WHERE itemid = ?";
+	         
+	        connect_func();
+	         
+	        preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+	        preparedStatement.setInt(1, id);
+	         
+	        ResultSet resultSet = preparedStatement.executeQuery();
+	         
+	        if (resultSet.next()) {
+	        	 int itemid1 = resultSet.getInt("itemid"); 
+	              String Title = resultSet.getString("title");
+	              String Description = resultSet.getString("description");
+	              String tags = resultSet.getString("posterid");
+	              String date= resultSet.getString("postTime");
+	              int price =resultSet.getInt("price");
+	              String user = resultSet.getString("refUser");
+	              item =  new Item(itemid1, Title, Description, date, tags,price,user);
+	        }
+	         
+	        resultSet.close();
+	      //  statement.close();
+	         
+	        return item;
+	    }
+	  
 	  public boolean update(Item item) throws SQLException {
-	        String sql = "update Items set User_UserID = ?, Title = ?, Description = ?, Date = ?, Tags = ? where ItemID="+item.ItemID+"";
+	        String sql = "update Items set title = ?, description = ?, posterid = ?, postTime = ?, price = ? where itemid="+item.ItemID+"";
 			  connect_func();
 
 	     
 	        preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
-	        preparedStatement.setString(1, item.User_UserID);
+	        preparedStatement.setInt(1, item.User_UserID);
 	        preparedStatement.setString(2, item.Title);
 	        preparedStatement.setString(3, item.Description);
 	        preparedStatement.setString(4, item.Date);

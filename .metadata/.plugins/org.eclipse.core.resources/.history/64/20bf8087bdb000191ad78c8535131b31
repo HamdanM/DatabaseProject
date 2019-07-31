@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Online Store</title>
+</head>
+<body>
+
+<h1>Part 3 from class project</h1>
+<form action="problemtwo" method="post">
+        <input type="hidden" name="action"" >
+        <label>choose Category: <input
+                    type="text" name="cat1"
+                    size="60" maxlength="70" />
+        <label>choose Category: <input
+                    type="text" name="cat2"
+                    size="60" maxlength="70" />
+          <input style="height:30px;width:125px" type="submit" name="submit" value="Submit" />	
+                    
+            </label></p>
+ </form>
+
+<a href="Displaynum2.jsp">problem three</a>
+<a href="Displaynum3.jsp">problem four</a>
+<a href="Displaynum4.jsp">problem five</a>
+<a href="Displaynum5.jsp"> problem six</a>
+<a href="Displaynum6.jsp">problem seven</a>
+<a href="Displaynum7.jsp">problem eight</a>
+<a href="Displaynum8.jsp">problem nine</a>
+<a href="Displaynum9.jsp">problem ten</a>
+
+</body>
+</html>

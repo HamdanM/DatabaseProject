@@ -14,24 +14,24 @@
     <form action="login"
           method="post">
         <input type="hidden" name="action" value="addToMailingList" >
-        <p style="color:green"><label>Username: <input
+        <label>Username: </label><input
                     type="text" name="username"
-                    size="70" maxlength="70" />
-            </label></p>
-        <p style="color:red"><label>Password: <input
+                    size="50" maxlength="70" />
+            
+       <br> <label>Password: </label> <input
                     type="password" name="password"
-                    size="70" maxlength="70" />
-            </label></p>
+                    size="50" maxlength="70" />
+           
 
-        <p style="color:orange"><input style="height:120px;width:225px" type=
+        <input style="height:20px;width:75px" type=
         "submit" name="submit" value=
-        "Submit" /></p>			
+        "Submit" />			
     </form>
       <form action="register.jsp"
           method="post" class="tab">
-        <p style="color:orange"><input style="height:120px;width:225px" type=
+       <input style="height:20px;width:75px" type=
         "submit" name="submit" value=
-        "Register" /></p>
+        "Register" />
 </form>
 
 </body>

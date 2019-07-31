@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Online Store</title>
+</head>
+<body>
+
+<h1>Part 3 from class project</h1>
+<a href="two">problem two</a>
+<a href="three">problem three</a>
+<a href="four">problem four</a>
+<a href="five">problem five</a>
+<a href="six"> problem six</a>
+<a href="seven">problem seven</a>
+<a href="eight">problem eight</a>
+<a href="nine">problem nine</a>
+<a href="ten">problem ten</a>
+
+</body>
+</html>

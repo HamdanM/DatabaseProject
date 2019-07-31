@@ -11,6 +11,8 @@ public class User {
     protected String Gender;
     protected int age;
     protected int level;
+    protected String loggedIn;
+    
  
     public User() {
     }
@@ -68,7 +70,7 @@ public class User {
     }
  
     public String getFirstname() {
-        return Password;
+        return FirstName;
     }
  
     public void setFirstname (String FirstName) {
@@ -95,7 +97,7 @@ public class User {
         return Gender;
     }
  
-    public void seGender(String Gender) {
+    public void setGender(String Gender) {
         this.Gender = Gender;
     }
     
@@ -113,6 +115,11 @@ public class User {
     public void setlevel(int level) {
         this.level = level;
     }
-    
+    public String getLoggedIn() {
+    	return loggedIn;
+    }
+    public void setLoggedIn(String loggedIn) {
+    	this.loggedIn = loggedIn;
+    }
    
 }

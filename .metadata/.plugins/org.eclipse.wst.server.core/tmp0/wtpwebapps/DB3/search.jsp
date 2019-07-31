@@ -5,52 +5,46 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Online Store</title>
 </head>
 <body>
-<a href="addITem">Add Item</a>
-<a href="addReview">Add Review</a>
+<a href="addItem.jsp">Add Item</a>
 <a href="favlist">Favorite List</a>
-<a href="itemList">item List</a>
-<a href="itemReview">Item Review</a>
-<a href="seller">Look at Sellers</a>
+<a href="favUsersList">fav User List</a>
+<a href="favUsersList">fav User List</a>
+<a href="list">item List</a>
+<a href="sellers">Look at Sellers</a>
+
 
  <form action="search" method="post">
         <input type="hidden" name="action"" >
-        <p style="color:green"><label>Search Item: <input
-                    type="text" name="item"
-                    size="70" maxlength="70" />
+        <p style="color:green"><label>Search Item by Category: <input
+                    type="text" name="Category"
+                    size="60" maxlength="70" />
+          <input style="height:30px;width:125px" type="submit" name="submit" value="Submit" />	
+                    
             </label></p>
-        <p style="color:orange"><input style="height:120px;width:225px" type=
-        "submit" name="submit" value=
-        "Submit" /></p>			
  </form>
      
-     <table border="1" cellpadding="5">
+<div align="center">
+        <table border="1" cellpadding="5">
             <caption><h2>List of Items</h2></caption>
             <tr>
-                <th>Item ID</th>
-                <th>User ID</th>
+                <th>user ID</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Date</th>
           
             </tr>
-            <c:forEach var="item" items="${item}">
+            <c:forEach var="it" items="${itemsList}">
                 <tr>
-                    <td><c:out value="${item.ItemID}" /></td>
-                    <td><c:out value="${item.User_UserID}" /></td>                
-                    <td><c:out value="${itemFound.Title}" /></td>
-                    <td><c:out value="${item.Description}" /></td>
-                    <td><c:out value="${item.Date}" /></td>
-                    <td>
-                        <a href="edit?id=<c:out value='${item.id}' />">Edit</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="delete?id=<c:out value='${item.id}' />">Delete</a>                     
-                    </td>
+                    <td><c:out value="${it.getItemid()}" /></td>
+                    <td><c:out value="${it.getTitle()}" /></td>
+                    <td><c:out value="${it.getDescription()}" /></td>
+                    
                 </tr>
             </c:forEach>
         </table>
+    </div>   
 
 </body>
 </html>

@@ -5,16 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Online Store</title>
 </head>
 <body>
 
-<a href="addITem">Add Item</a>
-<a href="addReview">Add Review</a>
+<a href="addItem.jsp">Add Item</a>
 <a href="favlist">Favorite List</a>
-<a href="itemList">item List</a>
-<a href="itemReview">Item Review</a>
-<a href="search">Search</a>
+<a href="list">item List</a>
+<a href="search.jsp">Search</a>
 
   <div align="center">
         <table border="1" cellpadding="5">
@@ -34,13 +32,13 @@
             <c:forEach var="us" items="${usersList}">
                 <tr>
 		            <td><c:out value="${us.userid}" /></td>
-                    <td><c:out value="${us.username}" /></td>
-                    <td><c:out value="${us.firstname}" /></td>
-                    <td><c:out value="${us.lastname}" /></td>
-                    <td><c:out value="${us.email}" /></td>
-                    <td><c:out value="${us.gender}" /></td>
-                    <td><c:out value="${us.age}" /></td>
-                    <td><c:out value="${us.level}" /></td>
+                    <td><c:out value="${us.getUsername()}" /></td>
+                    <td><c:out value="${us.getFirstname()}" /></td>
+                    <td><c:out value="${us.getLastname()}" /></td>
+                    <td><c:out value="${us.getEmail()}" /></td>
+                    <td><c:out value="${us.getGender()}" /></td>
+                    <td><c:out value="${us.getAge()}" /></td>
+                    <td><c:out value="${us.getLevel()}" /></td>
                     
                    
 			               <td>

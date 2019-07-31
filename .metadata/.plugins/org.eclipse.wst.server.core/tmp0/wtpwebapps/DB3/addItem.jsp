@@ -9,16 +9,16 @@
 </head>
 <body>
 
-<a href="addReview">Add Review</a>
 <a href="favlist">Favorite List</a>
-<a href="itemList">item List</a>
-<a href="itemReview">Item Review</a>
-<a href="search">Search</a>
-<a href="seller">Look at Sellers</a>
+<a href="list">item List</a>
+<a href="favUsersList">fav User List</a>
+<a href="search.jsp">Search</a>
+<a href="sellers">Look at Sellers</a>
 
 <form action="insertItem"
           method="post">
 
+          
         <p style="color:green"><label>title: <input
                     type="text" name="Title"
                     size="70" maxlength="70" />
@@ -27,13 +27,19 @@
                     type="text" name="Description"
                     size="70" maxlength="250" />
             </label></p>
+        
         <p style="color:red"><label>Tags: <input
-                    type="text" name="Tags"
+                    type="text" name="posterid"
+                    size="70" maxlength="70" />
+            </label></p>
+          
+            <p style="color:red"><label>Price: <input
+                    type="text" name="price"
                     size="70" maxlength="70" />
             </label></p>
         <p style="color:orange"><input style="height:120px;width:225px" type=
         "submit" name="submit" value=
-        "Add a Review" /></p>
+        "Add a Item" /></p>
 </form>
 
 </body>

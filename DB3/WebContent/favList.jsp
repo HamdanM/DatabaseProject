@@ -8,32 +8,31 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="addITem">Add Item</a>
-<a href="addReview">Add Review</a>
-<a href="itemReview">Item Review</a>
-<a href="search">Search</a>
-<a href="seller">Look at Sellers</a>
+<a href="addItem.jsp">Add Item</a>
+<a href="list">item List</a>
+<a href="favUsersList">fav User List</a>
+<a href="search.jsp">Search</a>
+<a href="sellers">Look at Sellers</a>
 
 <div id="FavList" class="tab">
     <h1>Favorite List</h1>
     
       <div align="center">
         <table border="1" cellpadding="5">
-            <caption><h2>List of Favorites</h2></caption>
+            <caption><h2>List of Favorite Items</h2></caption>
             <tr>
-                <th>user ID</th>
-                <th>Title</th>
-                <th>Description</th>
+              <th>seller ID</th>
+                <th>From user </th>
+              
           
             </tr>
-            <c:forEach var="fav" items="${listFav}">
+            <c:forEach var="fav" items="${favsList}">
                 <tr>
-                    <td><c:out value="${fav.userid}" /></td>
-                    <td><c:out value="${fav.title}" /></td>
-                    <td><c:out value="${fav.description}" /></td>
+                    <td><c:out value="${fav.getItemid()}" /></td>
+                    <td><c:out value="${fav.getUser_UserID()}" /></td>
                     <td>
                         &nbsp;&nbsp;
-                        <a href="delete?id=<c:out value='${item.id}' />">Delete</a>                     
+                        <a href="deleteFav?id=<c:out value='${fav.getUser_UserID()}' />">Delete</a>                     
                     </td>
                 </tr>
             </c:forEach>

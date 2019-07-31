@@ -8,56 +8,65 @@
 <title>Add a Review</title>
 </head>
 <body>
-<a href="addITem">Add Item</a>
+<a href="addItem.jsp">Add Item</a>
 <a href="favlist">Favorite List</a>
-<a href="itemList">item List</a>
-<a href="itemReview">Item Review</a>
-<a href="search">Search</a>
-<a href="seller">Look at Sellers</a>
+<a href="list">item List</a>
+<a href="favUsersList">fav User List</a>
+<a href="search.jsp">Search</a>
+<a href="sellers">Look at Sellers</a>
                    
-<form action="insertReview"
+<form action="insertreview"
           method="post">
-          <label>User: </label>
-        <input type="text" name="userid" maxlength="50" >
-       
-        <label>Score:</label>
-         <input
-         type="text" name="Subject"
-         size="70" maxlength="70" />
+
+        <table border="1" cellpadding="5">
+      		 <tr>
+                <th>Item ID: </th>
+                <td>
+                <c:if test="${item != null}">
+                    <input type="text" name="Itemid" readonly value="<c:out value='${item.itemid}' />" />
+                </c:if>   
+                 </td>
+            </tr>      
+            <tr>
+                <th>Title: </th>
+                <td>
+                    <input type="text" name="Title" readonly size="15"
+                            value="<c:out value='${item.title}' />" />
+                </td>
+            </tr>
+            <tr>
+                <th>Score: </th>
+                <td>
+				<select name="Score">
+					<option value="Excellent">Excellent</option>
+					<option value="Good">Good</option>
+					<option value="Fair">Fair</option>
+					<option value="Poor">Poor</option>
+				</select>
+                </td>
+            </tr>
+            <tr>
+                <th>Description/review: </th>
+                <td>
+                    <input type="text" name="ShortRemark" width="40" height="4"/>
+                </td>
+            </tr>
             
-        <label>ShortRemark:  </label>
-         <input
-           type="text" name="ShortRemark"
-           size="70" maxlength="250" />
+            
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="submit" value="Add a Review" />
+                </td>
+            </tr>
+        </table>
+   
           
        
-           
-        <p style="color:orange"><input style="height:120px;width:225px" type=
-        "submit" name="submit" value=
-        "Add a Review" /></p>
+         
+       
 </form>
 <div>
-<table border="1" cellpadding="5">
-            <caption><h2>List of Reviews</h2></caption>
-            <tr>
-                <th>user ID</th>
-                <th>Title</th>
-                <th>Description</th>
-          
-            </tr>
-            <c:forEach var="reivew" items="${review}">
-                <tr>
-                    <td><c:out value="${review.User_UserID}" /></td>
-                    <td><c:out value="${review.Score}" /></td>
-                    <td><c:out value="${review.ShortRemark}" /></td>
-                    <td>
-                        <a href="edit?id=<c:out value='${review.ReviewID}' />">Edit</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="delete?id=<c:out value='${review.ReviewID}' />">Delete</a>                     
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
+
 </div>
 </body>
 </html>

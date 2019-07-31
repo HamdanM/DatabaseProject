@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Online Store</title>
+</head>
+<body>
+
+
+<a href="two">two</a>
+<a href="three">three</a>
+<a href="four">four</a>
+<a href="five">five</a>
+<a href="six">six</a>
+<a href="seven">seven</a>
+<a href="eight">eight</a>
+<a href="nine">nine</a>
+<a href="ten">ten</a>
+
+</body>
+</html>

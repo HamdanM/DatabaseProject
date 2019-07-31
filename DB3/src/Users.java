@@ -96,7 +96,7 @@ public class Users extends HttpServlet{
 			    connect_func();			    	
 			    	/////////////////////////////////////////////////////////////////////////Insert tubles to User table
 			    	preparedStatement = connect
-			    			.prepareStatement("select * from Users");
+			    			.prepareStatement("select * from User");
 			    	ResultSet resultSet = preparedStatement.executeQuery();
 			    	
 			    	  while (resultSet.next()) {

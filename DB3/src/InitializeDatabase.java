@@ -296,18 +296,18 @@ System.out.println(connect);
       preparedStatement.setString(2, "Insulting review.");
       preparedStatement.setString(3, "1");
       preparedStatement.executeUpdate();
-      /////////////////////////////////////////////////////////////////////////Reviews table
+//      /////////////////////////////////////////////////////////////////////////Reviews table
       statement = connect.createStatement();
       statement.executeUpdate("DROP TABLE IF EXISTS Reviews");
 
-      sqlstmt = "CREATE TABLE IF NOT EXISTS Reviews " +
+      String sqlstmt1 = "CREATE TABLE IF NOT EXISTS Reviews " +
                    "(ReviewsID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, " +
                    " Item_ItemID INT(6) UNSIGNED, " + 
                    " User_UserID INT(6) UNSIGNED, " +
                    " Score VARCHAR(9) NOT NULL, " +
                    " ShortRemark TEXT NOT NULL, " +
                    " Date TIMESTAMP)"; 
-      statement.executeUpdate(sqlstmt);
+      statement.executeUpdate(sqlstmt1);
       ///////////////////////////////////////////////Insert 10 tubles to Reviews table
       preparedStatement = connect
           .prepareStatement("insert into  Reviews(Item_ItemID, User_UserID, Score, ShortRemark) values (?, ?, ?, ?)");
@@ -394,14 +394,14 @@ System.out.println(connect);
       statement = connect.createStatement();
       statement.executeUpdate("DROP TABLE IF EXISTS Item");
 
-      sqlstmt = "CREATE TABLE IF NOT EXISTS Item " +
+      sqlstmt1 = "CREATE TABLE IF NOT EXISTS Item " +
                    "(ItemID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, " +
                    " User_UserID INT(6) UNSIGNED, " + 
                    " Title TEXT NOT NULL, " +
                    " Description TEXT NOT NULL, " +
                    " Date TIMESTAMP, " +
                    " Tags VARCHAR(50))"; 
-      statement.executeUpdate(sqlstmt);
+      statement.executeUpdate(sqlstmt1);
       /////////////////////////////////////////////////////////////////////////Insert 10 tubles to review table
       preparedStatement = connect
           .prepareStatement("insert into  Item(User_UserID, Title, Description) values (?, ?, ?)");
@@ -476,7 +476,7 @@ System.out.println(connect);
       statement = connect.createStatement();
       statement.executeUpdate("DROP TABLE IF EXISTS User");
 
-      sqlstmt = "CREATE TABLE IF NOT EXISTS User " +
+      sqlstmt1 = "CREATE TABLE IF NOT EXISTS User " +
                    "(UserID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, " +
                    " Username VARCHAR(50) NOT NULL, " + 
                    " Password VARCHAR(50) NOT NULL, " + 
@@ -486,12 +486,12 @@ System.out.println(connect);
                    " Gender VARCHAR(10) NOT NULL, " +
                    " Age INT(6) NOT NULL, " +
                    " Level BOOLEAN NOT NULL)"; 
-      statement.executeUpdate(sqlstmt);
+      statement.executeUpdate(sqlstmt1);
       
       /////////////////////////////////////////////////////////////////////////Insert 10 tubles to User table
       preparedStatement = connect
           .prepareStatement("insert into  User(Username, Password, FirstName, LastName, Email, Gender, Age, Level) values (?, ?, ?, ?, ?, ?, ?, ?)");
-      preparedStatement.setString(1, "Amanda John");
+      preparedStatement.setString(1, "AmandaJohn");
       preparedStatement.setString(2, "AmandaJohn");
       preparedStatement.setString(3, "Amanda");
       preparedStatement.setString(4, "John");
@@ -503,7 +503,7 @@ System.out.println(connect);
       
       preparedStatement = connect
     		  .prepareStatement("insert into  User(Username, Password, FirstName, LastName, Email, Gender, Age, Level) values (?, ?, ?, ?, ?, ?, ?, ?)");
-      preparedStatement.setString(1, "Jessica Smith");
+      preparedStatement.setString(1, "JessicaSmith");
       preparedStatement.setString(2, "Jessica Smith");
       preparedStatement.setString(3, "Jessica");
       preparedStatement.setString(4, "Smith");
@@ -515,7 +515,7 @@ System.out.println(connect);
       
       preparedStatement = connect
     		  .prepareStatement("insert into  User(Username, Password, FirstName, LastName, Email, Gender, Age, Level) values (?, ?, ?, ?, ?, ?, ?, ?)");
-      preparedStatement.setString(1, "karim fares");
+      preparedStatement.setString(1, "karimfares");
       preparedStatement.setString(2, "Karimfaress");
       preparedStatement.setString(3, "Karim");
       preparedStatement.setString(4, "Fares");
@@ -539,7 +539,7 @@ System.out.println(connect);
       
       preparedStatement = connect
     		  .prepareStatement("insert into  User(Username, Password, FirstName, LastName, Email, Gender, Age, Level) values (?, ?, ?, ?, ?, ?, ?, ?)");
-      preparedStatement.setString(1, "Mohammad Hamdan");
+      preparedStatement.setString(1, "MohammadHamdan");
       preparedStatement.setString(2, "mohammadhamdan1");
       preparedStatement.setString(3, "Mohammad");
       preparedStatement.setString(4, "Hamdan");
@@ -551,7 +551,7 @@ System.out.println(connect);
       
       preparedStatement = connect
     		  .prepareStatement("insert into  User(Username, Password, FirstName, LastName, Email, Gender, Age, Level) values (?, ?, ?, ?, ?, ?, ?, ?)");
-      preparedStatement.setString(1, "Omar Amjad");
+      preparedStatement.setString(1, "OmarAmjad");
       preparedStatement.setString(2, "OmarAmjad13");
       preparedStatement.setString(3, "Omar");
       preparedStatement.setString(4, "Amjad");
@@ -563,7 +563,7 @@ System.out.println(connect);
       
       preparedStatement = connect
     		  .prepareStatement("insert into  User(Username, Password, FirstName, LastName, Email, Gender, Age, Level) values (?, ?, ?, ?, ?, ?, ?, ?)");
-      preparedStatement.setString(1, "Hasan Ansari");
+      preparedStatement.setString(1, "HasanAnsari");
       preparedStatement.setString(2, "Hasan1999");
       preparedStatement.setString(3, "Hasan");
       preparedStatement.setString(4, "Ansari");
@@ -575,7 +575,7 @@ System.out.println(connect);
       
       preparedStatement = connect
     		  .prepareStatement("insert into  User(Username, Password, FirstName, LastName, Email, Gender, Age, Level) values (?, ?, ?, ?, ?, ?, ?, ?)");
-      preparedStatement.setString(1, "Monowar Omar");
+      preparedStatement.setString(1, "MonowarOmar");
       preparedStatement.setString(2, "MonowarOmar");
       preparedStatement.setString(3, "Monowar");
       preparedStatement.setString(4, "Omar");
@@ -587,7 +587,7 @@ System.out.println(connect);
       
       preparedStatement = connect
     		  .prepareStatement("insert into  User(Username, Password, FirstName, LastName, Email, Gender, Age, Level) values (?, ?, ?, ?, ?, ?, ?, ?)");
-      preparedStatement.setString(1, "Khalid Smith");
+      preparedStatement.setString(1, "KhalidSmith");
       preparedStatement.setString(2, "khalid1990");
       preparedStatement.setString(3, "Khalid");
       preparedStatement.setString(4, "Smith");
@@ -599,7 +599,7 @@ System.out.println(connect);
       
       preparedStatement = connect
     		  .prepareStatement("insert into  User(Username, Password, FirstName, LastName, Email, Gender, Age, Level) values (?, ?, ?, ?, ?, ?, ?, ?)");
-      preparedStatement.setString(1, "Bob Smith");
+      preparedStatement.setString(1, "BobSmith");
       preparedStatement.setString(2, "bob1999");
       preparedStatement.setString(3, "bob");
       preparedStatement.setString(4, "Smith");

@@ -11,7 +11,33 @@
 <div id="Register" class="tab">
     <h1>Register</h1>
 </div>
-<form action="register"
+
+<script>
+
+
+// Function to check Whether both passwords 
+// is same or not. 
+function checkPassword(form) { 
+    password1 = form.password.value; 
+    password2 = form.password1.value; 
+
+    if (password1 == '') 
+        alert ("Please enter Password"); 
+    else if (password2 == '') 
+        alert ("Please enter confirm password"); 
+    else if (password1 != password2) { 
+        alert ("\nPassword did not match: Please try again...") 
+        return false; 
+    }else{
+    	return true;
+    }
+    
+    
+
+} 
+
+</script>
+<form onSubmit = "return checkPassword(this)" action="register"
           method="post">
         <input type="hidden" name="action" value="addToMailingList" >
         <p style="color:green"><label>Username: <input
@@ -19,7 +45,11 @@
                     size="70" maxlength="70" />
             </label></p>
         <p style="color:red"><label>Password: <input
-                    type="text" name="Password"
+                    type="password" name="Password"
+                    size="70" maxlength="70" />
+            </label></p>
+             <p style="color:red"><label>Password: <input
+                    type="password" name="Password1"
                     size="70" maxlength="70" />
             </label></p>
         <p style="color:red"><label>First Name: <input

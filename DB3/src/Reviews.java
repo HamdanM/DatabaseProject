@@ -42,18 +42,18 @@ public class Reviews extends HttpServlet {
 	        }
 	    }
 	  
-	  public void insertReview(String itemID, String userid, String score, String shortremark) throws SQLException, ClassNotFoundException {
+	  public void insertReview(String itemID, String score, String shortremark) throws SQLException {
 	    
 	    	System.out.println("Select a table and then print out its content.");
 	      
-	    	
+	    	connect_func();
 	    	/////////////////////////////////////////////////////////////////////////Insert tubles to User table
 	    	preparedStatement = connect
-	    			.prepareStatement("insert into  Reviews(Item_ItemID, User_UserID, Score, ShortRemark) values (?, ?, ?, ?)");
+	    			.prepareStatement("insert into  Reviews(Item_ItemID, Score, ShortRemark) values (?, ?, ?)");
 	    	preparedStatement.setString(1, itemID);
-	    	preparedStatement.setString(2, userid);
-	    	preparedStatement.setString(3, score);
-	    	preparedStatement.setString(4, shortremark);
+	    	//preparedStatement.setString(2, userid);
+	    	preparedStatement.setString(2, score);
+	    	preparedStatement.setString(3, shortremark);
 	    	preparedStatement.executeUpdate();
 
 	      
@@ -76,7 +76,7 @@ public class Reviews extends HttpServlet {
 		    	ResultSet resultSet = preparedStatement.executeQuery();
 		    
 	      
-		    	if (resultSet.next()) {
+		    	while (resultSet.next()) {
 		           int reviewid = resultSet.getInt("ReviewsID");
 		    		 int itemid1 = resultSet.getInt("Item_ItemID");
 		             int userid1 = resultSet.getInt("User_UserID");

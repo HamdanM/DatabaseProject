@@ -31,6 +31,10 @@ public class Review {
     public int getReviewid() {
         return ReviewID;
     }
+    
+    public int getItemID() {
+        return Item_ItemID;
+    }
  
     public void setReviewid(int ReviewID) {
         this.ReviewID = ReviewID;
